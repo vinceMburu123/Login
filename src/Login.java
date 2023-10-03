@@ -5,7 +5,7 @@ public class Login {
     String password;
     int attempts;
 
-    public void authenticate() {
+    public void Login() {
         Scanner access = new Scanner(System.in);
         System.out.println("Enter your username");
         username = access.nextLine();
@@ -18,7 +18,6 @@ public class Login {
         while (attempts > 0) {
             if (username.equals("Vincent") && password.equals("happy hour")) {
                 System.out.println("Authentication successful!");
-                password = null; 
                 break;
             } else {
                 System.out.println("Authentication failed. Please try again.");
@@ -26,15 +25,28 @@ public class Login {
                 System.out.println("Remaining attempts: " + attempts);
 
                 if (attempts == 0) {
-                    System.out.println("You've exceeded the maximum number of attempts.");
+                    System.out.println("Attempts exceeded.");
+                    break;
                 }
+
+                
+                System.out.println("Password characters:");
+                for (char c : password.toCharArray()) {
+                    System.out.print(c + " ");
+                }
+                System.out.println(); // Move to a new line after printing the password
+
+                // Prompt the user to re-enter the password
+                System.out.println("enter username again please:");
+                password = access.nextLine();
+                  System.out.println("Enter password again:");
+                username = access.nextLine();
             }
         }
-        
     }
 
     public static void main(String[] args) {
         Login user = new Login();
-        user.authenticate();
+        user.Login();
     }
 }
